@@ -1,0 +1,54 @@
+#+title: CE-ENGIN 597J Course Schedule
+#+options: toc:nil
+
+This page lists the days of class and the topics that will be covered on those days (subject to change depending on whether we will need to spend more time on topics that might prove more difficult than expected).
+
+* Code :noexport:
+#+name: generate-schedule
+#+begin_src emacs-lisp :results output raw
+  (princ "* Class schedule\n")
+  (let ((t1 (org-2ft "<2019-01-22 Tue 08:30>"))
+         (t2 (org-2ft "<2019-01-24 Thu 08:30>"))
+         (week (*  60 60 24 7))
+         (last-day (org-2ft "<2019-04-30>")))
+    (while (and (time-less-p t1 last-day)
+             (time-less-p t2 last-day))
+      (princ
+        (format-time-string "** <%Y-%m-%d %a 08:30>\n" t1))
+      (princ
+        (format-time-string "** <%Y-%m-%d %a 08:30>\n" t2))
+      (setq t1 (time-add t1 week)
+        t2 (time-add t2 week))))
+#+end_src
+
+#+RESULTS: generate-schedule
+
+* Class schedule
+** <2019-01-22 Tue 08:30> Class overview. Introduction to software tools we will cover.
+** <2018-01-24 Wed 08:30> Introduction to Python.
+** <2019-01-29 Tue 08:30> Data structures, functions and files.
+** <2018-01-31 Wed 08:30> Arrays and Vectorized computations.
+** <2019-02-05 Tue 08:30> Pandas.
+** <2018-02-07 Wed 08:30> Data loading, storage and data formats.
+** <2019-02-12 Tue 08:30> Data cleaning and preparation.
+** <2018-02-14 Wed 08:30> Data wrangling and aggregation.
+** <2019-02-19 Tue 08:30> No class (Monday's schedule)
+** <2018-02-21 Wed 08:30> Plotting and visualization.
+** <2019-02-26 Tue 08:30> Plotting and visualization (cont'd).
+** <2018-02-28 Wed 08:30> Time series.
+** <2019-03-05 Tue 08:30> Time series. Categorical data.
+** <2018-03-07 Wed 08:30> Statistical modeling.
+** <2019-03-12 Tue 08:30> No class (Spring recess)
+** <2018-03-14 Wed 08:30> No class (Spring recess)
+** <2019-03-19 Tue 08:30> Machine learning (Classification; Regression).
+** <2018-03-21 Wed 08:30> Machine learning (Clustering; Dimensionality reduction).
+** <2019-03-26 Tue 08:30> Spatial operations (GDAL).
+** <2018-03-28 Wed 08:30> Xarray. Mapping and GIS.
+** <2019-04-02 Tue 08:30> Parallelization. Dask.
+** <2018-04-04 Wed 08:30> Databases and SQL. PostGIS.
+** <2019-04-09 Tue 08:30> Introduction to Cloud computing.
+** <2018-04-11 Wed 08:30> Cloud computing (Hands-on).
+** <2019-04-16 Tue 08:30> Google Earth Engine.
+** <2018-04-18 Wed 08:30> Clean code.
+** <2019-04-23 Tue 08:30> Version control. Web resources.
+** <2018-04-25 Wed 08:30> Reproducible research.
