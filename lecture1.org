@@ -1,0 +1,153 @@
+#+title: Computational Methods in Environmental Engineering
+#+author: Lecture #1
+#+date: 22 Jan 2019
+#+options: num:nil toc:nil timestamp:nil
+#+startup: noinlineimages
+#+macro: empty
+#+macro: color @@html:<font color="$1">$2</font>@@
+#+reveal_theme: black
+#+reveal_extra_css: custom.css
+* {{{empty}}}
+:PROPERTIES:
+:reveal_background: https://media.giphy.com/media/QQkyLVLAbQRKU/giphy.gif
+:reveal_trans: slide
+:END:
+** {{{empty}}}
+* Course logistics
+#+attr_reveal: :frag (roll-in)
+- Office hours
+
+  *Tue 10:00-12:30*, 18C Marston Hall
+  (or by appointment, [[mailto:kandread@umass.edu][kandread@umass.edu]])
+- No textbook
+- Grading
+  | Homework      | 60% |
+  | Final project | 40% |
+* Course objectives
+#+attr_reveal: :frag (appear)
+#+attr_html: :style font-size:0.9em
+- Understand basic programming abstractions and data structures.
+- Load, parse, process, and store various scientific datasets.
+- Produce publication-quality plots and visualizations.
+- Implement statistical and algorithms for engineering problems.
+- Understand basic parallelization techniques.
+- Deploy algorithms on cloud architectures.
+- Learn good software engineering practices.
+* Course schedule
+#+attr_reveal: :frag (appear)
+- Week 1: Introduction and programming basics.
+- Week 2: Data structures.
+- Week 3: Pandas. Data loading.
+- Week 4: Data wrangling.
+- Week 5/6: Plotting and visualization.
+- Week 6/7: Time series analysis.
+** {{{empty}}}
+#+attr_reveal: :frag (appear)
+- Week 8: No class.
+- Week 9: Statistical modeling.
+- Week 10: Spatial analysis.
+- Week 11: Databases.
+- Week 12: Parallel and cloud computing.
+- Week 13: Version control.
+- Week 14: Coding best practices.
+* Machine architecture
+[[file:images/architecture.png]]
+* Computer programming
+#+attr_reveal: :frag (appear)
+- Sequence of instructions built from set of predefined {{{color(dodgerblue,primitives)}}}
+- Interpreter executes each instruction in order and completes program
+- *Programming languages* can abstract methods to create new primitives
+- Set of instructions forms the program's source code
+** {{{empty}}}
+* What can go wrong?
+#+attr_reveal: :frag (appear)
+- Syntactic errors
+  #+begin_src python
+  printfd("hello")
+  #+end_src
+- Semantic errors
+  #+begin_src python
+  print("hello"+3)
+  #+end_src
+- Algorithmic errors
+  #+begin_src python
+  E = m * c^3
+  #+end_src
+* Choosing a programming language
+| *Mainstream PL*          | *Technical Computing*    |
+|--------------------------+--------------------------|
+| static checking          | experimental computation |
+| classes, single dispatch | complex operators        |
+| data hiding              | manipulation of data     |
+| parametric polymorphism  | ad hoc polymorphism      |
+* {{{empty}}}
+
+#+attr_html: :width 60%
+[[https://www.ibm.com/ibm/history/ibm100/images/icp/C854721S34852J03/us__en_us__ibm100__punched_card__hand_cards__940x727.jpg]]
+* Expressiveness vs Performance
+[[https://pbs.twimg.com/media/Dv8k-qpWwAAHRtg.jpg]]
+* And the winner is...
+#+attr_reveal: :frag roll-in
+#+attr_html: :width 40% :height 40%
+https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/python_logo_1.png
+** Why Python?
+[[file:images/tiobe.png]]
+** {{{empty}}}
+Java
+#+attr_reveal: :frag appear
+#+begin_src java
+  public class Main {
+      public static void main(String[] args) {
+          System.out.println("hello umass");
+      }
+  }
+#+end_src
+
+Python
+#+attr_reveal: :frag appear
+#+begin_src python
+  print("hello umass")
+#+end_src
+* Libraries
+#+attr_html: :style float:left
+- *Numpy*
+- *Scipy*
+- *Pandas*
+- *Xarray*
+- *Scikit-Learn*
+- *Matplotlib*
+- *Statsmodels*
+* {{{empty}}}
+- Wealth of Python libraries allow us to be productive with complex tasks
+#+attr_html: :style text-align:center
+[[https://nbviewer.jupyter.org/github/python-visualization/folium/blob/master/examples/HeatMapWithTime.ipynb][Let's look at an example!]]
+* Running Python
+[[file:images/python_console.png]]
+* {{{empty}}}
+#+attr_html: :style text-align:center
+Integrated Development Environment
+[[https://www.jetbrains.com/pycharm/img/screenshots/simpleLook@2x.jpg]]
+* Get to the install already!
+[[https://code.visualstudio.com/docs/languages/python]]
+[[file:images/python_vs.png]]
+** Other options
+- PyCharm [[http://www.jetbrains.com/pycharm/]]
+- Atom https://atom.io/packages/ide-python
+- Spyder [[https://docs.spyder-ide.org/]]
+- Vim https://realpython.com/vim-and-python-a-match-made-in-heaven/
+* Jupyter notebooks
+#+attr_reveal: :frag (appear)
+- A web-based interactive computational environment that is language agnostic
+- Allows embedding text, formulas, code and its results (including plots) into a single document
+- Can be exported to a number of different formats (HTML, slides, PDF, Markdown etc.)
+ 
+ [[https://jupyter.org/try][Let's try a demo!]]
+* Docker
+- Performs operating system virtualization into {{{color(dodgerblue,containers)}}}
+- Each container is an isolated environment and bundles its own application, tools, libraries, configuration files
+- [[https://kitematic.com/][Kitematic]] is a simple front-end to Docker that can help you run Python stacks *anywhere*
+* For next time...
+Try to install a Python environment on your computer
+
+(or come with questions!)
+

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Computational Methods in Environmental Engineering</title>
+<meta name="author" content="(Lecture #1)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/theme/black.css" id="theme"/>
+
+<link rel="stylesheet" href="custom.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js@3/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Computational Methods in Environmental Engineering</h1><h2 class="author">Lecture #1</h2><h2 class="date">22 Jan 2019</h2>
+</section>
+<section>
+<section id="slide-orgc39c6d0" data-background="https://media.giphy.com/media/QQkyLVLAbQRKU/giphy.gif">
+<h2 id="orgc39c6d0"></h2>
+</section>
+<section id="slide-orge3d9228">
+<h3 id="orge3d9228"></h3>
+</section>
+</section>
+<section>
+<section id="slide-org86e88b4">
+<h2 id="org86e88b4">Course logistics</h2>
+<ul>
+<li class="fragment roll-in"><p>
+Office hours
+</p>
+
+<p>
+<b>Tue 10:00-12:30</b>, 18C Marston Hall
+(or by appointment, <a href="mailto:kandread@umass.edu">kandread@umass.edu</a>)
+</p></li>
+<li class="fragment roll-in">No textbook</li>
+<li class="fragment roll-in"><p>
+Grading
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Homework</td>
+<td class="org-right">60%</td>
+</tr>
+
+<tr>
+<td class="org-left">Final project</td>
+<td class="org-right">40%</td>
+</tr>
+</tbody>
+</table></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgc9615df">
+<h2 id="orgc9615df">Course objectives</h2>
+<ul style="font-size:0.9em">
+<li class="fragment appear">Understand basic programming abstractions and data structures.</li>
+<li class="fragment appear">Load, parse, process, and store various scientific datasets.</li>
+<li class="fragment appear">Produce publication-quality plots and visualizations.</li>
+<li class="fragment appear">Implement statistical and algorithms for engineering problems.</li>
+<li class="fragment appear">Understand basic parallelization techniques.</li>
+<li class="fragment appear">Deploy algorithms on cloud architectures.</li>
+<li class="fragment appear">Learn good software engineering practices.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgb7b53c2">
+<h2 id="orgb7b53c2">Course schedule</h2>
+<ul>
+<li class="fragment appear">Week 1: Introduction and programming basics.</li>
+<li class="fragment appear">Week 2: Data structures.</li>
+<li class="fragment appear">Week 3: Pandas. Data loading.</li>
+<li class="fragment appear">Week 4: Data wrangling.</li>
+<li class="fragment appear">Week 5/6: Plotting and visualization.</li>
+<li class="fragment appear">Week 6/7: Time series analysis.</li>
+
+</ul>
+</section>
+<section id="slide-orgfe89a31">
+<h3 id="orgfe89a31"></h3>
+<ul>
+<li class="fragment appear">Week 8: No class.</li>
+<li class="fragment appear">Week 9: Statistical modeling.</li>
+<li class="fragment appear">Week 10: Spatial analysis.</li>
+<li class="fragment appear">Week 11: Databases.</li>
+<li class="fragment appear">Week 12: Parallel and cloud computing.</li>
+<li class="fragment appear">Week 13: Version control.</li>
+<li class="fragment appear">Week 14: Coding best practices.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org16d7855">
+<h2 id="org16d7855">Machine architecture</h2>
+
+<figure>
+<img src="images/architecture.png" alt="architecture.png">
+
+</figure>
+</section>
+</section>
+<section>
+<section id="slide-org6ff7744">
+<h2 id="org6ff7744">Computer programming</h2>
+<ul>
+<li class="fragment appear">Sequence of instructions built from set of predefined <font color="dodgerblue">primitives</font></li>
+<li class="fragment appear">Interpreter executes each instruction in order and completes program</li>
+<li class="fragment appear"><b>Programming languages</b> can abstract methods to create new primitives</li>
+<li class="fragment appear">Set of instructions forms the program's source code</li>
+
+</ul>
+</section>
+<section id="slide-orgb59cd5e">
+<h3 id="orgb59cd5e"></h3>
+</section>
+</section>
+<section>
+<section id="slide-org5e09c86">
+<h2 id="org5e09c86">What can go wrong?</h2>
+<ul>
+<li class="fragment appear"><p>
+Syntactic errors
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python">printfd(<span style="color: #858253;">"hello"</span>)
+</pre>
+</div></li>
+<li class="fragment appear"><p>
+Semantic errors
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #86aed5;">print</span>(<span style="color: #858253;">"hello"</span>+3)
+</pre>
+</div></li>
+<li class="fragment appear"><p>
+Algorithmic errors
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #fdfdd5;">E</span> = m * c^3
+</pre>
+</div></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org733f756">
+<h2 id="org733f756">Choosing a programming language</h2>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left"><b>Mainstream PL</b></th>
+<th scope="col" class="org-left"><b>Technical Computing</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">static checking</td>
+<td class="org-left">experimental computation</td>
+</tr>
+
+<tr>
+<td class="org-left">classes, single dispatch</td>
+<td class="org-left">complex operators</td>
+</tr>
+
+<tr>
+<td class="org-left">data hiding</td>
+<td class="org-left">manipulation of data</td>
+</tr>
+
+<tr>
+<td class="org-left">parametric polymorphism</td>
+<td class="org-left">ad hoc polymorphism</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section>
+<section id="slide-org168734a">
+<h2 id="org168734a"></h2>
+
+<figure>
+<img src="https://www.ibm.com/ibm/history/ibm100/images/icp/C854721S34852J03/us__en_us__ibm100__punched_card__hand_cards__940x727.jpg" alt="us__en_us__ibm100__punched_card__hand_cards__940x727.jpg" width="60%">
+
+</figure>
+</section>
+</section>
+<section>
+<section id="slide-org12e8eec">
+<h2 id="org12e8eec">Expressiveness vs Performance</h2>
+
+<figure>
+<img src="https://pbs.twimg.com/media/Dv8k-qpWwAAHRtg.jpg" alt="Dv8k-qpWwAAHRtg.jpg">
+
+</figure>
+</section>
+</section>
+<section>
+<section id="slide-org528557f">
+<h2 id="org528557f">And the winner is&#x2026;</h2>
+
+<figure>
+<img src="https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/python_logo_1.png" alt="python_logo_1.png" class="fragment roll-in" width="40%" height="40%">
+
+</figure>
+</section>
+<section id="slide-org290e09f">
+<h3 id="org290e09f">Why Python?</h3>
+
+<figure>
+<img src="images/tiobe.png" alt="tiobe.png">
+
+</figure>
+</section>
+<section id="slide-orgdac5e00">
+<h3 id="orgdac5e00"></h3>
+<p>
+Java
+</p>
+<div class="org-src-container">
+
+<pre  class="fragment appear"><span style="color: #86aed5;">public</span> <span style="color: #86aed5;">class</span> <span style="color: #8686ae;">Main</span> {
+    <span style="color: #86aed5;">public</span> <span style="color: #86aed5;">static</span> <span style="color: #8686ae;">void</span> <span style="color: #fdfdd5;">main</span>(<span style="color: #8686ae;">String</span>[] <span style="color: #fdfdd5;">args</span>) {
+        System.out.println(<span style="color: #858253;">"hello umass"</span>);
+    }
+}
+</pre>
+</div>
+
+<p>
+Python
+</p>
+<div class="org-src-container">
+
+<pre  class="fragment appear"><span style="color: #86aed5;">print</span>(<span style="color: #858253;">"hello umass"</span>)
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org6a5e239">
+<h2 id="org6a5e239">Libraries</h2>
+<ul style="float:left">
+<li><b>Numpy</b></li>
+<li><b>Scipy</b></li>
+<li><b>Pandas</b></li>
+<li><b>Xarray</b></li>
+<li><b>Scikit-Learn</b></li>
+<li><b>Matplotlib</b></li>
+<li><b>Statsmodels</b></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgb88d0f1">
+<h2 id="orgb88d0f1"></h2>
+<ul>
+<li>Wealth of Python libraries allow us to be productive with complex tasks</li>
+
+</ul>
+<p style="text-align:center">
+<a href="https://nbviewer.jupyter.org/github/python-visualization/folium/blob/master/examples/HeatMapWithTime.ipynb" style="text-align:center">Let's look at an example!</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org245b5ca">
+<h2 id="org245b5ca">Running Python</h2>
+
+<figure>
+<img src="images/python_console.png" alt="python_console.png">
+
+</figure>
+</section>
+</section>
+<section>
+<section id="slide-orgc4ef52c">
+<h2 id="orgc4ef52c"></h2>
+<p style="text-align:center">
+Integrated Development Environment
+<img src="https://www.jetbrains.com/pycharm/img/screenshots/simpleLook@2x.jpg" alt="simpleLook@2x.jpg" style="text-align:center">
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org5d930d2">
+<h2 id="org5d930d2">Get to the install already!</h2>
+<p>
+<a href="https://code.visualstudio.com/docs/languages/python">https://code.visualstudio.com/docs/languages/python</a>
+<img src="images/python_vs.png" alt="python_vs.png">
+</p>
+</section>
+<section id="slide-orgc0dfd1a">
+<h3 id="orgc0dfd1a">Other options</h3>
+<ul>
+<li>PyCharm <a href="http://www.jetbrains.com/pycharm/">http://www.jetbrains.com/pycharm/</a></li>
+<li>Atom <a href="https://atom.io/packages/ide-python">https://atom.io/packages/ide-python</a></li>
+<li>Spyder <a href="https://docs.spyder-ide.org/">https://docs.spyder-ide.org/</a></li>
+<li>Vim <a href="https://realpython.com/vim-and-python-a-match-made-in-heaven/">https://realpython.com/vim-and-python-a-match-made-in-heaven/</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge447c77">
+<h2 id="orge447c77">Jupyter notebooks</h2>
+<ul>
+<li class="fragment appear">A web-based interactive computational environment that is language agnostic</li>
+<li class="fragment appear">Allows embedding text, formulas, code and its results (including plots) into a single document</li>
+<li class="fragment appear"><p>
+Can be exported to a number of different formats (HTML, slides, PDF, Markdown etc.)
+</p>
+
+<p>
+<a href="https://jupyter.org/try">Let's try a demo!</a>
+</p></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org9fed851">
+<h2 id="org9fed851">Docker</h2>
+<ul>
+<li>Performs operating system virtualization into <font color="dodgerblue">containers</font></li>
+<li>Each container is an isolated environment and bundles its own application, tools, libraries, configuration files</li>
+<li><a href="https://kitematic.com/">Kitematic</a> is a simple front-end to Docker that can help you run Python stacks <b>anywhere</b></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgf77268b">
+<h2 id="orgf77268b">For next time&#x2026;</h2>
+<p>
+Try to install a Python environment on your computer
+</p>
+
+<p>
+(or come with questions!)
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
